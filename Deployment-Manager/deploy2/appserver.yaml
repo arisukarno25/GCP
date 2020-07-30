@@ -1,0 +1,18 @@
+resources:
+- name: appserver
+  type: compute.v1.instance
+  properties:
+    zone: us-central1-a
+    machineType: https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-2dadfbaf0432/zones/us-central1-a/machineTypes/f1-micro
+    networkInterfaces:
+      - network: https://www.googleapis.com/compute/v1/projects/qwiklabs-gcp-02-2dadfbaf0432/global/networks/default
+        accessConfigs:
+        - name: External_NAT
+          type: ONE_TO_ONE_NAT
+    disks:
+      - type: PERSISTENT
+        deviceName: boot
+        boot: true
+        autoDelete: true
+        initializeParams:
+          sourceImage: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-10-buster-v20200714
